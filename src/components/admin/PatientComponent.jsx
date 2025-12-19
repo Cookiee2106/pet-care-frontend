@@ -71,6 +71,15 @@ const PatientComponent = () => {
     setFilteredPatients(filtered);
   }, [selectedEmail, patients]);
 
+  useEffect(() => {
+    if (currentPage > 1 && filteredPatients.length > 0) {
+      const maxPage = Math.ceil(filteredPatients.length / patientsPerPage);
+      if (currentPage > maxPage) {
+        setCurrentPage(maxPage);
+      }
+    }
+  }, [filteredPatients, currentPage, patientsPerPage]);
+
   // Here we are extracting all patients email from the current patient.
   const emails = Array.from(new Set(patients.map((p) => p.email)));
 

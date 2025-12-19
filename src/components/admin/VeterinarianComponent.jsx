@@ -145,6 +145,15 @@ const VeterinarianComponent = () => {
     setFilteredVets(filtered);
   }, [selectedSpecialization, veterinarians]);
 
+  useEffect(() => {
+    if (currentPage > 1 && filteredVets.length > 0) {
+      const maxPage = Math.ceil(filteredVets.length / vetsPerPage);
+      if (currentPage > maxPage) {
+        setCurrentPage(maxPage);
+      }
+    }
+  }, [filteredVets, currentPage, vetsPerPage]);
+
   // Here extract the specializations from the veterinarin list.
   const specializations = Array.from(
     new Set(veterinarians.map((vet) => vet.specialization))
