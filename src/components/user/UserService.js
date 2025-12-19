@@ -129,3 +129,14 @@ export async function unLockUserAccount(userId) {
     throw error;
   }
 }
+
+export async function searchUsers(keyword, role) {
+  try {
+    const result = await api.get("/users/search", {
+      params: { keyword, role },
+    });
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+}

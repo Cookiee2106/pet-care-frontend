@@ -12,7 +12,7 @@ const AdminDashboardSidebar = ({
   onNavigate,
   activeTab,
 }) => {
-  
+
   return (
     <aside
       id='sidebar'
@@ -28,9 +28,8 @@ const AdminDashboardSidebar = ({
 
       <ul className="sidebar-list">
         <li
-          className={`sidebar-list-item ${
-            activeTab === "overview" ? "active" : ""
-          }`}
+          className={`sidebar-list-item ${activeTab === "overview" ? "active" : ""
+            }`}
           onClick={() => onNavigate("overview")}>
           <a href='#'>
             <BsGrid1X2Fill className='icon' /> Tổng quan hoạt động
@@ -38,9 +37,8 @@ const AdminDashboardSidebar = ({
         </li>
 
         <li
-          className={`sidebar-list-item ${
-            activeTab === "veterinarians" ? "active" : ""
-          }`}
+          className={`sidebar-list-item ${activeTab === "veterinarians" ? "active" : ""
+            }`}
           onClick={() => onNavigate("veterinarians")}>
           <a href='#'>
             <BsPeopleFill className='icon' /> Bác sĩ thú y
@@ -48,12 +46,20 @@ const AdminDashboardSidebar = ({
         </li>
 
         <li
-          className={`sidebar-list-item ${
-            activeTab === "patients" ? "active" : ""
-          }`}
+          className={`sidebar-list-item ${activeTab === "patients" ? "active" : ""
+            }`}
           onClick={() => onNavigate("patients")}>
           <a href='#'>
             <BsPeopleFill className='icon' /> Thông tin chủ thú cưng
+          </a>
+        </li>
+
+        <li
+          className={`sidebar-list-item ${activeTab === "search-users" ? "active" : ""
+            }`}
+          onClick={() => onNavigate("search-users")}>
+          <a href='#'>
+            <BsSearch className='icon' /> Tra cứu người dùng
           </a>
         </li>
       </ul>

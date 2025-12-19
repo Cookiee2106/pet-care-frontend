@@ -3,6 +3,7 @@ import AdminOverview from "./AdminOverview";
 import AdminDashboardSidebar from "./AdminDashboardSidebar";
 import VeterinarianComponent from "./VeterinarianComponent";
 import PatientComponent from "./PatientComponent";
+import UserSearchComponent from "./UserSearchComponent";
 
 function AdminDashboard() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -36,6 +37,7 @@ function AdminDashboard() {
           {activeContent === "overview" && <AdminOverview />}
           {activeContent === "veterinarians" && <VeterinarianComponent />}
           {activeContent === "patients" && <PatientComponent />}
+          {activeContent === "search-users" && <UserSearchComponent />}
         </div>
       </div>
     </main>
