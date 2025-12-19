@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
-// import { BsSearch } from "react-icons/bs";
-// import { BsArrowRepeat } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
+import { BsArrowRepeat } from "react-icons/bs";
 import AlertMessage from "../common/AlertMessage";
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import { searchUsers } from "../user/UserService";
@@ -28,6 +28,7 @@ const UserSearchComponent = () => {
             setUsers(data);
             setShowErrorAlert(false);
         } catch (error) {
+            console.error("Search error:", error);
             setErrorMessage(error.message);
             setShowErrorAlert(true);
             setUsers([]);
@@ -76,10 +77,10 @@ const UserSearchComponent = () => {
                 </Col>
                 <Col md={3}>
                     <Button variant="primary" className="me-2" onClick={handleSearch} disabled={isSearching}>
-                        {isSearching ? "Đang tìm..." : "Tìm kiếm"}
+                        <BsSearch /> {isSearching ? "Đang tìm..." : "Tìm kiếm"}
                     </Button>
                     <Button variant="secondary" onClick={clearFilters}>
-                        Xóa lọc
+                        <BsArrowRepeat /> Xóa lọc
                     </Button>
                 </Col>
             </Row>
@@ -116,7 +117,8 @@ const UserSearchComponent = () => {
                     </tbody>
                 </Table>
             ) : (
-                isSearching ? null : <div className="text-center mt-4">Vui lòng nhập điều kiện tìm kiếm</div>
+                // Only show this instructions if NOT searching AND NO keyword entered yet
+                !isSearching && !keyword ? <div className="text-center mt-4">Vui lòng nhập điều kiện tìm kiếm</div> : null
             )}
 
             {users.length === 0 && !isSearching && keyword && (
