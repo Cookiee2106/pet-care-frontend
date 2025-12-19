@@ -25,7 +25,7 @@ const UserSearchComponent = () => {
         setIsSearching(true);
         try {
             const data = await searchUsers(keyword, role);
-            setUsers(data);
+            setUsers(data.data);
             setShowErrorAlert(false);
         } catch (error) {
             console.error("Search error:", error);
