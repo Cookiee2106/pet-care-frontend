@@ -4,6 +4,7 @@ import {
   BsGrid1X2Fill,
   BsX,
   BsPeopleFill,
+  BsSearch,
 } from "react-icons/bs";
 
 const AdminDashboardSidebar = ({
