@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
-import { BsSearch } from "react-icons/bs";
-import { BsArrowRepeat } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
+// import { BsArrowRepeat } from "react-icons/bs";
 import AlertMessage from "../common/AlertMessage";
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import { searchUsers } from "../user/UserService";
@@ -76,10 +76,10 @@ const UserSearchComponent = () => {
                 </Col>
                 <Col md={3}>
                     <Button variant="primary" className="me-2" onClick={handleSearch} disabled={isSearching}>
-                        <BsSearch /> {isSearching ? "Đang tìm..." : "Tìm kiếm"}
+                        {isSearching ? "Đang tìm..." : "Tìm kiếm"}
                     </Button>
                     <Button variant="secondary" onClick={clearFilters}>
-                        <BsArrowRepeat /> Xóa lọc
+                        Xóa lọc
                     </Button>
                 </Col>
             </Row>
