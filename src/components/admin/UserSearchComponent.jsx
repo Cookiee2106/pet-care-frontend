@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
-import { BsSearch, BsArrowRepeat } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
+import { BsArrowRepeat } from "react-icons/bs";
 import AlertMessage from "../common/AlertMessage";
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import { searchUsers } from "../user/UserService";
