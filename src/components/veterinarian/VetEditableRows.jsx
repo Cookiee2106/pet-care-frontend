@@ -70,6 +70,8 @@ const VetEditableRows = ({ vet, onSave, onCancel }) => {
         />
       </td>
 
+      <td>{vet.createdAt}</td>
+
       <td colSpan={4}>
         <Button
           variant='success'
