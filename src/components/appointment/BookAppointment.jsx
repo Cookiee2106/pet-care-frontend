@@ -190,17 +190,14 @@ const BookAppointment = () => {
                     </Col>
 
                     <Col>
-                      required
-                      />
-                    </Col>
-
-                    <Col>
                       <DatePicker
                         selected={formData.appointmentTime}
                         onChange={handleTimeChange}
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={30}
+                        timeCaption='Giờ'
+                        timeFormat='HH:mm'
                         dateFormat='HH:mm'
                         className='form-control'
                         placeholderText='Chọn giờ'
