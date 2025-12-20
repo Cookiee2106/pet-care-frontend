@@ -34,7 +34,7 @@ const RegistrationChart = () => {
         const transformedData = Object.entries(userData).map(
           ([month, counts]) => {
             return {
-              name: monthMap[month] || month,
+              name: monthMap[month.toUpperCase()] || month,
               "Bác sĩ thú y": counts.VET || 0,
               "Chủ thú cưng": counts.PATIENT || 0,
             };

@@ -12,7 +12,7 @@ const useColorMapping = () => {
       "Không được duyệt": rootStyle.getPropertyValue("--color-not-approved"),
       "Bác sĩ thú y": "#2f6a32",
       "Chủ thú cưng": "#d26161",
-      "Đã hoàn thành": "#000000",
+      "Đã hoàn thành": "#00C49F",
       "Đã xác nhận": "#236ec9",
       "Đã hủy": "#b01e1e",
       "Chờ xác nhận": "#e3b320",
