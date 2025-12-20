@@ -273,7 +273,7 @@ const PatientComponent = () => {
                     <td>{patient.lastName}</td>
                     <td>{patient.email}</td>
                     <td>{patient.phoneNumber}</td>
-                    <td>{patient.gender}</td>
+                    <td>{patient.gender === "Male" ? "Nam" : patient.gender === "Female" ? "Nữ" : patient.gender}</td>
                     <td>{patient.createdAt}</td>
                     <td>
                       <OverlayTrigger

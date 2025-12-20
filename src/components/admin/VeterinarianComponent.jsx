@@ -288,7 +288,7 @@ const VeterinarianComponent = () => {
                     <td>{vet.lastName}</td>
                     <td>{vet.email}</td>
                     <td>{vet.phoneNumber}</td>
-                    <td>{vet.gender}</td>
+                    <td>{vet.gender === "Male" ? "Nam" : vet.gender === "Female" ? "Nữ" : vet.gender}</td>
                     <td>{vet.specialization}</td>
                     <td>{vet.createdAt}</td>
                     <td>
