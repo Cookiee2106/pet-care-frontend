@@ -235,7 +235,11 @@ const PatientComponent = () => {
                   <BsSearch />
                 </Button>
                 {(searchKeyword || isSearching) && (
-                  <Button variant="outline-secondary" onClick={handleClearSearch}>
+                  <Button
+                    variant="outline-secondary"
+                    onClick={handleClearSearch}
+                    title="Xóa tìm kiếm"
+                  >
                     <BsArrowRepeat />
                   </Button>
                 )}

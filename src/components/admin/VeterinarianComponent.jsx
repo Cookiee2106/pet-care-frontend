@@ -252,7 +252,7 @@ const VeterinarianComponent = () => {
                 </Button>
                 {/* Only show clear button if searching or keyword exists */}
                 {(searchKeyword || isSearching) && (
-                  <Button variant="outline-secondary" onClick={handleClearSearch}>
+                  <Button variant="outline-secondary" onClick={handleClearSearch} title="Xóa tìm kiếm">
                     <BsArrowRepeat />
                   </Button>
                 )}
