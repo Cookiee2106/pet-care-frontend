@@ -59,8 +59,7 @@ const AccountChart = () => {
                 dataKey='value'
                 nameKey='name'
                 outerRadius={110}
-                fill='#8884d8'
-                label>
+                fill='#8884d8'>
                 {accountData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}

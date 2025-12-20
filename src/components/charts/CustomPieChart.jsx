@@ -19,13 +19,13 @@ const CustomPieChart = ({
   const colors = useColorMapping();
 
   return (
-    <section className="mb-5 mt-5">     
+    <section className="mb-5 mt-5">
       <ResponsiveContainer width={width} height={height}>
         <PieChart className="mt-4">
           <Pie
             dataKey={dataKey}
             data={data}
-            label={({ [nameKey]: name }) => name}>
+            data={data}>
             {data &&
               data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[entry.name]} />
