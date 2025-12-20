@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker"
 
@@ -55,11 +55,32 @@ const AppointmentUpdateModal = ({
               showTimeSelect
               showTimeSelectOnly
               timeIntervals={30}
-              timeCaption='Time'
+              timeCaption='Giờ'
               dateFormat='HH:mm'
+              timeFormat='HH:mm'
               className='form-control'
               placeholderText='Chọn giờ'
               required
+              minTime={
+                appointmentDate &&
+                  new Date(appointmentDate).toDateString() === new Date().toDateString()
+                  ? (() => {
+                    const now = new Date();
+                    const eightAM = new Date();
+                    eightAM.setHours(8, 0, 0, 0);
+                    return now > eightAM ? now : eightAM;
+                  })()
+                  : (() => {
+                    const d = new Date();
+                    d.setHours(8, 0, 0, 0);
+                    return d;
+                  })()
+              }
+              maxTime={(() => {
+                const d = new Date();
+                d.setHours(18, 0, 0, 0);
+                return d;
+              })()}
             />
           </Form.Group>
 
@@ -81,7 +102,7 @@ const AppointmentUpdateModal = ({
           Đóng
         </Button>
         <Button variant='info' onClick={handleSubmit}>
-          Lưu 
+          Lưu
         </Button>
       </Modal.Footer>
     </Modal>

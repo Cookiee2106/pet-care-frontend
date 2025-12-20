@@ -143,10 +143,33 @@ const VeterinarianSearch = ({ onSearchResult }) => {
                       showTimeSelect
                       showTimeSelectOnly
                       timeIntervals={30}
+                      timeFormat='HH:mm'
+                      timeIntervals={30}
+                      timeCaption='Giờ'
                       dateFormat='HH:mm'
                       className='form-control w-100'
                       placeholderText='Chọn giờ'
                       required
+                      minTime={
+                        searchQuery.date &&
+                          new Date(searchQuery.date).toDateString() === new Date().toDateString()
+                          ? (() => {
+                            const now = new Date();
+                            const eightAM = new Date();
+                            eightAM.setHours(8, 0, 0, 0);
+                            return now > eightAM ? now : eightAM;
+                          })()
+                          : (() => {
+                            const d = new Date();
+                            d.setHours(8, 0, 0, 0);
+                            return d;
+                          })()
+                      }
+                      maxTime={(() => {
+                        const d = new Date();
+                        d.setHours(18, 0, 0, 0);
+                        return d;
+                      })()}
                     />
                   </Form.Group>
                 </React.Fragment>
@@ -164,7 +187,7 @@ const VeterinarianSearch = ({ onSearchResult }) => {
               type='button'
               variant='outline-info'
               onClick={handleClearSearch}>
-              Xóa tìm kiếm 
+              Xóa tìm kiếm
             </Button>
           </div>
         </div>
