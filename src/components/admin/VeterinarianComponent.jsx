@@ -204,7 +204,7 @@ const VeterinarianComponent = () => {
             show={showDeleteModal}
             onHide={() => setShowDeleteModal(false)}
             onConfirm={handleDeleteAccount}
-            itemToDelete='veterinarian'
+            itemToDelete='bác sĩ thú y này'
           />
 
           <h5>Danh sách bác sĩ thú y</h5>
@@ -324,7 +324,7 @@ const VeterinarianComponent = () => {
                       <OverlayTrigger
                         overlay={
                           <Tooltip id={`tooltip-view-${index}`}>
-                            {vet.enabled ? "Khóa" : "Unlock"} tài khoản
+                            {vet.enabled ? "Khóa" : "Mở khóa"} tài khoản
                           </Tooltip>
                         }>
                         <span
@@ -339,7 +339,7 @@ const VeterinarianComponent = () => {
                       <OverlayTrigger
                         overlay={
                           <Tooltip id={`tooltip-view-${index}`}>
-                            xóa tài khoản
+                            Xóa tài khoản
                           </Tooltip>
                         }>
                         <Link

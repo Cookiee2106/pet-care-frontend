@@ -113,7 +113,7 @@ const ChangePasswordModal = ({ userId, show, handleClose }) => {
           </Form.Group>
 
           <Form.Group controlId='confirmNewPassword' className='mb-2'>
-            <Form.Label>Confirm New Password:</Form.Label>
+            <Form.Label>Xác nhận mật khẩu mới:</Form.Label>
             <Form.Control
               type={type}
               name='confirmNewPassword'

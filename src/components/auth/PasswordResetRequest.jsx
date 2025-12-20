@@ -47,15 +47,15 @@ const PasswordResetRequest = () => {
         )}
 
         <Card.Body>
-          <Card.Title>Password Reset Request</Card.Title>
+          <Card.Title>Yêu cầu đặt lại mật khẩu</Card.Title>
           <Form onSubmit={handleSubmit}>
             <Form.Group classNane='mb-3' controlId='email'>
               <Form.Label>Nhập địa chỉ email của bạn</Form.Label>
               <Form.Control
                 type='email'
-                placeholder='Enter email'
+                placeholder='Nhập email của bạn'
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}              
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <Form.Text className='text-muted'>

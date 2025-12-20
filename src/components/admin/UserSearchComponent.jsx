@@ -69,9 +69,9 @@ const UserSearchComponent = () => {
                         <Form.Label>Vai trò</Form.Label>
                         <Form.Select value={role} onChange={(e) => setRole(e.target.value)}>
                             <option value="">-- Tất cả --</option>
-                            <option value="PATIENT">Chủ thú cưng (Patient)</option>
-                            <option value="VET">Bác sĩ (Veterinarian)</option>
-                            <option value="ADMIN">Quản trị viên (Admin)</option>
+                            <option value="PATIENT">Chủ thú cưng</option>
+                            <option value="VET">Bác sĩ thú y</option>
+                            <option value="ADMIN">Quản trị viên</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>

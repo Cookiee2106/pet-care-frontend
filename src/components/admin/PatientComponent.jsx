@@ -196,7 +196,7 @@ const PatientComponent = () => {
         show={showDeleteModal}
         onHide={() => setShowDeleteModal(false)}
         onConfirm={handleDeleteAccount}
-        itemToDelete='patient account'
+        itemToDelete='tài khoản chủ thú cưng này'
       />
 
       {currentPatients && currentPatients.length > 0 ? (
