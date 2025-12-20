@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BsCheck, BsX } from "react-icons/bs";
 import VetSpecializationSelector from "./VetSpecializationSelector";
 import { Button, Form } from "react-bootstrap";
@@ -70,7 +70,7 @@ const VetEditableRows = ({ vet, onSave, onCancel }) => {
         />
       </td>
 
-      <td>
+      <td colSpan={4}>
         <Button
           variant='success'
           size='sm'
