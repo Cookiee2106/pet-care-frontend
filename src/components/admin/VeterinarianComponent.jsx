@@ -240,7 +240,7 @@ const VeterinarianComponent = () => {
               />
             </Col>
             <Col md={6}>
-              <InputGroup>
+              <InputGroup className="mb-2">
                 <Form.Control
                   placeholder="Tìm kiếm theo tên hoặc email..."
                   value={searchKeyword}
