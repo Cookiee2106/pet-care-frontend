@@ -60,7 +60,6 @@ const PatientEditableRows = ({ patient, onSave, onCancel }) => {
                     <option value=''>Chọn giới tính</option>
                     <option value='Male'>Nam</option>
                     <option value='Female'>Nữ</option>
-                    <option value='Other'>Khác</option>
                 </Form.Control>
             </td>
             <td>{patient.createdAt}</td>
