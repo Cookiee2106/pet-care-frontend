@@ -65,7 +65,7 @@ const PatientEditableRows = ({ patient, onSave, onCancel }) => {
             </td>
             <td>{patient.createdAt}</td>
 
-            <td colSpan={2}>
+            <td colSpan={4}>
                 <Button
                     variant='success'
                     size='sm'
