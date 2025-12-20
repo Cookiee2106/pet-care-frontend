@@ -101,7 +101,7 @@ const VeterinarianSearch = ({ onSearchResult }) => {
             name='specialization'
             value={searchQuery.specialization}
             onChange={handleInputchange}>
-            <option value=''>Chọn chuyên khoa</option>
+            <option value=''>Tất cả chuyên khoa</option>
             {specializations.map((specialization) => (
               <option key={specialization} value={specialization}>
                 {specialization}
