@@ -201,9 +201,20 @@ const PatientComponent = () => {
 
       {currentPatients && currentPatients.length > 0 ? (
         <React.Fragment>
+          <h5 className="mb-4">Danh sách chủ thú cưng</h5>
+          <Row>
+            <Col>
+              {showErrorAlert && (
+                <AlertMessage type='danger' message={errorMessage} />
+              )}
+              {showSuccessAlert && (
+                <AlertMessage type='success' message={successMessage} />
+              )}
+            </Col>
+          </Row>
+
           <Row className="mb-4 align-items-center">
-            <h5>Danh sách chủ thú cưng</h5>
-            <Col md={3}>
+            <Col md={5}>
               <UserFilter
                 values={emails}
                 selectedValue={selectedEmail}
@@ -212,8 +223,8 @@ const PatientComponent = () => {
                 label={"email"}
               />
             </Col>
-            <Col md={6}>
-              <InputGroup>
+            <Col md={7}>
+              <InputGroup className="mb-2">
                 <Form.Control
                   placeholder="Tìm kiếm theo tên hoặc email..."
                   value={searchKeyword}
@@ -229,14 +240,6 @@ const PatientComponent = () => {
                   </Button>
                 )}
               </InputGroup>
-            </Col>
-            <Col>
-              {showErrorAlert && (
-                <AlertMessage type='danger' message={errorMessage} />
-              )}
-              {showSuccessAlert && (
-                <AlertMessage type='success' message={successMessage} />
-              )}
             </Col>
           </Row>
 
