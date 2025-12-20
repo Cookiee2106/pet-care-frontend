@@ -7,13 +7,15 @@ import {
   BsPlusSquareFill,
   BsTrashFill,
   BsUnlockFill,
+  BsSearch,
+  BsArrowRepeat
 } from "react-icons/bs";
-import { Table, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
+import { Table, OverlayTrigger, Tooltip, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import AlertMessage from "../common/AlertMessage";
 import DeleteConfirmationModal from "../modals/DeleteConfirmationModal";
 import { getVeterinarians } from "../veterinarian/VeterinarianService";
-import { deleteUser, updateUser } from "../user/UserService";
+import { deleteUser, updateUser, searchUsers } from "../user/UserService";
 import { lockUserAccount, unLockUserAccount } from "../user/UserService";
 import VetEditableRows from "../veterinarian/VetEditableRows";
 import UserFilter from "../user/UserFilter";
@@ -27,6 +29,8 @@ const VeterinarianComponent = () => {
   const [editVetId, setEditVetId] = useState(null);
   const [filteredVets, setFilteredVets] = useState([]);
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [vetsPerPage] = useState(10);
@@ -50,6 +54,7 @@ const VeterinarianComponent = () => {
     getVeterinarians()
       .then((data) => {
         setVeterinarians(data.data);
+        setFilteredVets(data.data);
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -135,6 +140,34 @@ const VeterinarianComponent = () => {
     }
   };
 
+  const handleSearch = async (e) => {
+    e?.preventDefault();
+    if (!searchKeyword.trim()) return;
+
+    setIsSearching(true);
+    try {
+      const result = await searchUsers(searchKeyword, "VET");
+      // Result from API is { message, data: [...] } or just data depending on return
+      // Based on previous interaction it was data.data
+      setVeterinarians(result.data || []);
+      setFilteredVets(result.data || []);
+      setSelectedSpecialization(""); // Reset filter when searching
+      setShowErrorAlert(false);
+    } catch (error) {
+      setErrorMessage(error.message);
+      setShowErrorAlert(true);
+      setVeterinarians([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchKeyword("");
+    fetchVeterinarians();
+    setSelectedSpecialization("");
+  };
+
   useEffect(() => {
     let filtered = veterinarians;
     if (selectedSpecialization) {
@@ -196,9 +229,8 @@ const VeterinarianComponent = () => {
             </Col>
           </Row>
 
-          <Row className='mb=4'>
-            <Col md={6}>
-              {" "}
+          <Row className='mb-4 align-items-center'>
+            <Col md={3}>
               <UserFilter
                 values={specializations}
                 selectedValue={selectedSpecialization}
@@ -206,6 +238,25 @@ const VeterinarianComponent = () => {
                 onClearFilters={handleClearFilters}
                 label={"Chuyên khoa"}
               />
+            </Col>
+            <Col md={6}>
+              <InputGroup>
+                <Form.Control
+                  placeholder="Tìm kiếm theo tên hoặc email..."
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
+                />
+                <Button variant="outline-primary" onClick={handleSearch} disabled={isSearching}>
+                  <BsSearch />
+                </Button>
+                {/* Only show clear button if searching or keyword exists */}
+                {(searchKeyword || isSearching) && (
+                  <Button variant="outline-secondary" onClick={handleClearSearch}>
+                    <BsArrowRepeat />
+                  </Button>
+                )}
+              </InputGroup>
             </Col>
           </Row>
 

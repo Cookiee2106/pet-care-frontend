@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
+import { Table, OverlayTrigger, Tooltip, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
   BsEyeFill,
@@ -7,11 +7,13 @@ import {
   BsPencilFill,
   BsTrashFill,
   BsUnlockFill,
+  BsSearch,
+  BsArrowRepeat
 } from "react-icons/bs";
 import AlertMessage from "../common/AlertMessage";
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import { getPatients } from "../patient/PatientService";
-import { deleteUser, updateUser, lockUserAccount, unLockUserAccount } from "../user/UserService";
+import { deleteUser, updateUser, lockUserAccount, unLockUserAccount, searchUsers } from "../user/UserService";
 import UserFilter from "../user/UserFilter";
 import Paginator from "../common/Paginator";
 import NoDataAvailable from "../common/NoDataAvailable";
@@ -22,6 +24,8 @@ const PatientComponent = () => {
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [patientsPerPage] = useState(10);
 
@@ -53,6 +57,7 @@ const PatientComponent = () => {
     try {
       const response = await getPatients();
       setPatients(response.data);
+      setFilteredPatients(response.data);
     } catch (error) {
       setErrorMessage(error.message);
       setShowErrorAlert(true);
@@ -62,6 +67,32 @@ const PatientComponent = () => {
   useEffect(() => {
     fetchPatients();
   }, []);
+
+  const handleSearch = async (e) => {
+    e?.preventDefault();
+    if (!searchKeyword.trim()) return;
+
+    setIsSearching(true);
+    try {
+      const result = await searchUsers(searchKeyword, "PATIENT");
+      setPatients(result.data || []);
+      setFilteredPatients(result.data || []);
+      setSelectedEmail(""); // Reset filter
+      setShowErrorAlert(false);
+    } catch (error) {
+      setErrorMessage(error.message);
+      setShowErrorAlert(true);
+      setPatients([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchKeyword("");
+    fetchPatients();
+    setSelectedEmail("");
+  };
 
   useEffect(() => {
     let filtered = patients;
@@ -170,9 +201,9 @@ const PatientComponent = () => {
 
       {currentPatients && currentPatients.length > 0 ? (
         <React.Fragment>
-          <Row>
+          <Row className="mb-4 align-items-center">
             <h5>Danh sách chủ thú cưng</h5>
-            <Col>
+            <Col md={3}>
               <UserFilter
                 values={emails}
                 selectedValue={selectedEmail}
@@ -180,6 +211,24 @@ const PatientComponent = () => {
                 onClearFilters={handleClearFilters}
                 label={"email"}
               />
+            </Col>
+            <Col md={6}>
+              <InputGroup>
+                <Form.Control
+                  placeholder="Tìm kiếm theo tên hoặc email..."
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
+                />
+                <Button variant="outline-primary" onClick={handleSearch} disabled={isSearching}>
+                  <BsSearch />
+                </Button>
+                {(searchKeyword || isSearching) && (
+                  <Button variant="outline-secondary" onClick={handleClearSearch}>
+                    <BsArrowRepeat />
+                  </Button>
+                )}
+              </InputGroup>
             </Col>
             <Col>
               {showErrorAlert && (
