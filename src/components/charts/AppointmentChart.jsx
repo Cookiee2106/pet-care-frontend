@@ -17,7 +17,11 @@ const AppointmentChart = () => {
           "cancelled": "Đã hủy",
           "approved": "Đã xác nhận",
           "waiting-for-approval": "Chờ xác nhận",
-          "not-completed": "Chưa hoàn thành"
+          "not-completed": "Chưa hoàn thành",
+          "not-approved": "Không được duyệt",
+          "on-going": "Đang diễn ra",
+          "up-coming": "Sắp tới",
+          "pending": "Chờ xử lý"
         };
         const translatedData = response.data.map(item => ({
           ...item,
