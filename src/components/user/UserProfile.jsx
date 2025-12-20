@@ -17,7 +17,7 @@ const UserProfile = ({ user, handleRemovePhoto, handleDeleteAccount }) => {
 
   const isCurrentUser = user.id == currentUserId;
 
-  
+
 
   const handleShowImageUploaderModal = () => {
     setShowImageUploaderModal(true);
@@ -146,7 +146,7 @@ const UserProfile = ({ user, handleRemovePhoto, handleDeleteAccount }) => {
               <Card.Body className='d-flex align-items-center'>
                 <Col md={4}>Giới tính :</Col>
                 <Col md={4}>
-                  <Card.Text>{user.gender}</Card.Text>
+                  <Card.Text>{user.gender === "Male" ? "Nam" : user.gender === "Female" ? "Nữ" : user.gender}</Card.Text>
                 </Col>
               </Card.Body>
 
@@ -167,7 +167,15 @@ const UserProfile = ({ user, handleRemovePhoto, handleDeleteAccount }) => {
               <Card.Body className='d-flex align-items-center'>
                 <Col md={4}>Loại người dùng:</Col>
                 <Col md={4}>
-                  <Card.Text>{user.userType}</Card.Text>
+                  <Card.Text>
+                    {user.userType === "VET"
+                      ? "Bác sĩ thú y"
+                      : user.userType === "PATIENT"
+                        ? "Chủ thú cưng"
+                        : user.userType === "ADMIN"
+                          ? "Quản trị viên"
+                          : user.userType}
+                  </Card.Text>
                 </Col>
               </Card.Body>
 
@@ -185,7 +193,7 @@ const UserProfile = ({ user, handleRemovePhoto, handleDeleteAccount }) => {
                 <Col md={4}>
                   <Card.Text
                     className={user.enabled ? style.active : style.inactive}>
-                    {user.enabled ? "Active" : "Inactive"}
+                    {user.enabled ? "Đang hoạt động" : "Bị khóa"}
                   </Card.Text>
                 </Col>
               </Card.Body>
@@ -199,7 +207,13 @@ const UserProfile = ({ user, handleRemovePhoto, handleDeleteAccount }) => {
                     {user.roles &&
                       user.roles.map((role, index) => (
                         <ListGroup.Item key={index} className='text-success'>
-                          {role ? role.replace("ROLE_", "") : ""}
+                          {role === "ROLE_VET"
+                            ? "Bác sĩ thú y"
+                            : role === "ROLE_PATIENT"
+                              ? "Chủ thú cưng"
+                              : role === "ROLE_ADMIN"
+                                ? "Quản trị viên"
+                                : role.replace("ROLE_", "")}
                         </ListGroup.Item>
                       ))}
                   </ListGroup>
