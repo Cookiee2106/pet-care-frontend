@@ -3,10 +3,10 @@ import { Form, Col } from "react-bootstrap";
 import AddItemModal from "../modals/AddItemModal";
 import { getAllPetTypes } from "./PetService";
 
-const PetTypeSelector = ({name, value, onChange }) => {
+const PetTypeSelector = ({ name, value, onChange }) => {
   const [petTypes, setPetTypes] = useState([]);
   const [showModal, setShowModal] = useState(false);
- 
+
 
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const PetTypeSelector = ({name, value, onChange }) => {
   const handleTypeChange = (e) => {
     if (e.target.value === "add-new-item") {
       setShowModal(true);
-    } else {    
+    } else {
       onChange(e);
     }
   };
@@ -33,7 +33,7 @@ const PetTypeSelector = ({name, value, onChange }) => {
   //handle save new item
   const handleSaveNewItem = (newItem) => {
     if (newItem && !petTypes.includes(newItem)) {
-      setPetTypes([...petTypes, newItem]);     
+      setPetTypes([...petTypes, newItem]);
       onChange({ target: { name: "type", value: newItem } });
     }
   };
@@ -59,7 +59,7 @@ const PetTypeSelector = ({name, value, onChange }) => {
       <AddItemModal
         show={showModal}
         handleClose={() => setShowModal(false)}
-        itemLabel={"Loại"}
+        itemLabel={"Loại thú cưng"}
         handleSave={handleSaveNewItem}
       />
     </React.Fragment>

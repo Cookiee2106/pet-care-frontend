@@ -55,7 +55,7 @@ const VetSpecializationSelector = ({ value, onChange }) => {
       <AddItemModal
         show={showModal}
         handleClose={() => setShowModal(false)}
-        itemLabel={"Specialization"}
+        itemLabel={"Chuyên khoa"}
         handleSave={handleSaveNewItem}
       />
     </React.Fragment>

@@ -22,8 +22,22 @@ const VetSpecializationChart = () => {
       try {
         const response = await aggregateVetBySpecialization();
         const veterinarians = response;
+
+        const specMap = {
+          "Surgeon": "Phẫu thuật",
+          "Radiology": "Chẩn đoán hình ảnh",
+          "Dentistry": "Nha khoa",
+          "General": "Đa khoa",
+          "Dermatology": "Da liễu",
+          "Cardiology": "Tim mạch",
+          "Neurology": "Thần kinh",
+          "Oncology": "Ung bướu",
+          "Nutrition": "Dinh dưỡng"
+        };
+
         const processedData = veterinarians.map((vet) => ({
           ...vet,
+          specialization: specMap[vet.specialization] || vet.specialization,
           color: generateColor(vet.specialization),
         }));
         setVetSpecialization(processedData);
@@ -81,7 +95,7 @@ const VetSpecializationChart = () => {
         </React.Fragment>
 
 
-        
+
       ) : (
         <NoDataAvailable
           dataType={"chuyên khoa bác sĩ"}

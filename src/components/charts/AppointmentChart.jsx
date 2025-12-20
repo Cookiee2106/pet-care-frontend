@@ -11,8 +11,20 @@ const AppointmentChart = () => {
     const getAppointmentsInfo = async () => {
       try {
         const response = await getAppointmentsSummary();
-        setAppointmentData(response.data);
-        console.log("yeeeeeeeeeh", response.data);
+        // Translate status keys to Vietnamese
+        const statusMap = {
+          "completed": "Đã hoàn thành",
+          "cancelled": "Đã hủy",
+          "approved": "Đã xác nhận",
+          "waiting-for-approval": "Chờ xác nhận",
+          "not-completed": "Chưa hoàn thành"
+        };
+        const translatedData = response.data.map(item => ({
+          ...item,
+          name: statusMap[item.name.toLowerCase()] || item.name
+        }));
+        setAppointmentData(translatedData);
+        console.log("yeeeeeeeeeh", translatedData);
       } catch (error) {
         setErrorMessage(error.message);
       }

@@ -8,11 +8,11 @@ const AddItemModal = ({ show, handleClose, handleSave, itemLabel }) => {
     handleSave(itemValue);
     setItemValue("");
     handleClose();
-    };
-    
-    const handleInputChange = (e) => {
-        setItemValue(e.target.value);
-    };
+  };
+
+  const handleInputChange = (e) => {
+    setItemValue(e.target.value);
+  };
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -22,12 +22,12 @@ const AddItemModal = ({ show, handleClose, handleSave, itemLabel }) => {
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label>{itemLabel} thú cưng </Form.Label>
+            <Form.Label>{itemLabel}</Form.Label>
             <Form.Control
               type='text'
-              placeholder={`Nhập tên ${itemLabel.toLowerCase()}`}
+              placeholder={`Nhập ${itemLabel.toLowerCase()}`}
               value={itemValue}
-              onChange={handleInputChange}/>
+              onChange={handleInputChange} />
           </Form.Group>
         </Form>
 

@@ -24,11 +24,17 @@ const RegistrationChart = () => {
         const response = await getAggregateUsersByMonthAndType();
         const userData = response.data;
         console.log("Dữ liệu người dùng tại đây :", userData);
+
+        const monthMap = {
+          "JANUARY": "Tháng 1", "FEBRUARY": "Tháng 2", "MARCH": "Tháng 3", "APRIL": "Tháng 4", "MAY": "Tháng 5", "JUNE": "Tháng 6",
+          "JULY": "Tháng 7", "AUGUST": "Tháng 8", "SEPTEMBER": "Tháng 9", "OCTOBER": "Tháng 10", "NOVEMBER": "Tháng 11", "DECEMBER": "Tháng 12"
+        };
+
         //Transform the backend data into the desired format
         const transformedData = Object.entries(userData).map(
           ([month, counts]) => {
             return {
-              name: month,
+              name: monthMap[month] || month,
               "Bác sĩ thú y": counts.VET || 0,
               "Chủ thú cưng": counts.PATIENT || 0,
             };

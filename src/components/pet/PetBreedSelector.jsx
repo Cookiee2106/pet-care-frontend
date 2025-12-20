@@ -61,7 +61,7 @@ const PetBreedSelector = ({ petType, value, onChange }) => {
       <AddItemModal
         show={showModal}
         handleClose={() => setShowModal(false)}
-        itemLabel={"Giống"}
+        itemLabel={"Giống thú cưng"}
         handleSave={handleSaveNewItem}
       />
     </React.Fragment>

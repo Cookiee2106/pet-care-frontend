@@ -24,7 +24,7 @@ const PetColorSelector = ({ value, onChange }) => {
     if (e.target.value === "add-new-item") {
       setShowModal(true);
     } else {
-     // onChange({ target: { name: "color", value: e.target.value } });
+      // onChange({ target: { name: "color", value: e.target.value } });
       onChange(e);
     }
   };
@@ -62,7 +62,7 @@ const PetColorSelector = ({ value, onChange }) => {
         show={showModal}
         handleClose={handleClose}
         handleSave={handleSaveNewItem}
-        itemLabel='Màu'
+        itemLabel='Màu sắc'
       />
     </React.Fragment>
   );
