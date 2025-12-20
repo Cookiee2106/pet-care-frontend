@@ -214,7 +214,7 @@ const PatientComponent = () => {
           </Row>
 
           <Row className="mb-4 align-items-center">
-            <Col md={5}>
+            <Col md={6} className="mb-2 mb-md-0">
               <UserFilter
                 values={emails}
                 selectedValue={selectedEmail}
@@ -223,7 +223,7 @@ const PatientComponent = () => {
                 label={"email"}
               />
             </Col>
-            <Col md={7}>
+            <Col md={6}>
               <InputGroup className="mb-2">
                 <Form.Control
                   placeholder="Tìm kiếm theo tên hoặc email..."

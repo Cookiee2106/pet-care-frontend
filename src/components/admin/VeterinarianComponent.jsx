@@ -230,7 +230,7 @@ const VeterinarianComponent = () => {
           </Row>
 
           <Row className='mb-4 align-items-center'>
-            <Col md={3}>
+            <Col md={6} className="mb-2 mb-md-0">
               <UserFilter
                 values={specializations}
                 selectedValue={selectedSpecialization}
