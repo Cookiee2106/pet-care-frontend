@@ -85,7 +85,7 @@ const VetSpecializationChart = () => {
                 }}
               />
               <Legend layout='vertical' />
-              <Bar dataKey='count' fill='#8884d8'>
+              <Bar dataKey='count' name="Số lượng" fill='#8884d8'>
                 {vetSpecialization.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
