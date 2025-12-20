@@ -42,7 +42,7 @@ const UserAppointments = ({ user, appointments: initialAppointments }) => {
     setShowSuccessAlert,
     showErrorAlert,
     setShowErrorAlert,
-  } = UseMessageAlerts();  
+  } = UseMessageAlerts();
 
   const fetchAppointment = async (appointmentId) => {
     try {
@@ -211,8 +211,8 @@ const UserAppointments = ({ user, appointments: initialAppointments }) => {
                       showTimeSelect
                       timeFormat='HH:mm'
                       timeIntervals={30}
-                      timeCaption='time'
-                      dateFormat='MMMM d, yyyy h:mm aa'
+                      timeCaption='Giờ'
+                      dateFormat='yyyy-MM-dd HH:mm'
                       inline
                     />
 
