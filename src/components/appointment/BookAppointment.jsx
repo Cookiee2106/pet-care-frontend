@@ -40,7 +40,7 @@ const BookAppointment = () => {
   } = UseMessageAlerts();
 
   const { recipientId } = useParams();
-  const senderId =  localStorage.getItem("userId");
+  const senderId = localStorage.getItem("userId");
 
   const handleDateChange = (date) => {
     setFormData((prevState) => ({
@@ -190,6 +190,11 @@ const BookAppointment = () => {
                     </Col>
 
                     <Col>
+                      required
+                      />
+                    </Col>
+
+                    <Col>
                       <DatePicker
                         selected={formData.appointmentTime}
                         onChange={handleTimeChange}
@@ -200,6 +205,26 @@ const BookAppointment = () => {
                         className='form-control'
                         placeholderText='Chọn giờ'
                         required
+                        minTime={
+                          formData.appointmentDate &&
+                            new Date(formData.appointmentDate).toDateString() === new Date().toDateString()
+                            ? (() => {
+                              const now = new Date();
+                              const eightAM = new Date();
+                              eightAM.setHours(8, 0, 0, 0);
+                              return now > eightAM ? now : eightAM;
+                            })()
+                            : (() => {
+                              const d = new Date();
+                              d.setHours(8, 0, 0, 0);
+                              return d;
+                            })()
+                        }
+                        maxTime={(() => {
+                          const d = new Date();
+                          d.setHours(18, 0, 0, 0);
+                          return d;
+                        })()}
                       />
                     </Col>
                   </Form.Group>
