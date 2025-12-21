@@ -19,6 +19,21 @@ import { bookAppointment } from "./AppointmentService";
 import AlertMessage from "../common/AlertMessage";
 import ProcessSpinner from "../common/ProcessSpinner";
 
+const CustomDateInput = React.forwardRef(({ value, onClick, onChange, placeholder, required, onInvalid, onInput, className }, ref) => (
+  <Form.Control
+    value={value}
+    onClick={onClick}
+    onChange={onChange}
+    ref={ref}
+    placeholder={placeholder}
+    required={required}
+    onInvalid={onInvalid}
+    onInput={onInput}
+    className={className}
+    autoComplete="off"
+  />
+));
+
 const BookAppointment = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
@@ -188,9 +203,13 @@ const BookAppointment = () => {
                         className='form-control'
                         minDate={new Date()}
                         placeholderText='Chọn ngày'
-                        required
-                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn ngày hẹn.")}
-                        onInput={(e) => e.target.setCustomValidity("")}
+                        customInput={
+                          <CustomDateInput
+                            required
+                            onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn ngày hẹn.")}
+                            onInput={(e) => e.target.setCustomValidity("")}
+                          />
+                        }
                       />
                     </Col>
 
@@ -206,9 +225,13 @@ const BookAppointment = () => {
                         dateFormat='HH:mm'
                         className='form-control'
                         placeholderText='Chọn giờ'
-                        required
-                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giờ hẹn.")}
-                        onInput={(e) => e.target.setCustomValidity("")}
+                        customInput={
+                          <CustomDateInput
+                            required
+                            onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giờ hẹn.")}
+                            onInput={(e) => e.target.setCustomValidity("")}
+                          />
+                        }
                         minTime={
                           formData.appointmentDate &&
                             new Date(formData.appointmentDate).toDateString() === new Date().toDateString()
