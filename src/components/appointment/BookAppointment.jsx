@@ -19,18 +19,15 @@ import { bookAppointment } from "./AppointmentService";
 import AlertMessage from "../common/AlertMessage";
 import ProcessSpinner from "../common/ProcessSpinner";
 
-const CustomDateInput = React.forwardRef(({ value, onClick, onChange, placeholder, required, onInvalid, onInput, className }, ref) => (
-  <Form.Control
-    value={value}
-    onClick={onClick}
-    onChange={onChange}
-    ref={ref}
-    placeholder={placeholder}
-    required={required}
-    onInvalid={onInvalid}
-    onInput={onInput}
-    className={className}
+const CustomDateInput = React.forwardRef(({ errorMessage, ...props }, ref) => (
+  <input
+    className="form-control"
+    {...props}
     autoComplete="off"
+    ref={ref}
+    required
+    onInvalid={(e) => e.target.setCustomValidity(errorMessage)}
+    onInput={(e) => e.target.setCustomValidity("")}
   />
 ));
 
@@ -205,9 +202,7 @@ const BookAppointment = () => {
                         placeholderText='Chọn ngày'
                         customInput={
                           <CustomDateInput
-                            required
-                            onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn ngày hẹn.")}
-                            onInput={(e) => e.target.setCustomValidity("")}
+                            errorMessage="Vui lòng chọn ngày hẹn."
                           />
                         }
                       />
@@ -227,9 +222,7 @@ const BookAppointment = () => {
                         placeholderText='Chọn giờ'
                         customInput={
                           <CustomDateInput
-                            required
-                            onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giờ hẹn.")}
-                            onInput={(e) => e.target.setCustomValidity("")}
+                            errorMessage="Vui lòng chọn giờ hẹn."
                           />
                         }
                         minTime={
