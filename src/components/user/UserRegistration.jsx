@@ -100,6 +100,8 @@ const UserRegistration = () => {
                         value={user.firstName}
                         onChange={handleInputChange}
                         required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập họ của bạn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
                     <Col xs={6}>
@@ -110,6 +112,8 @@ const UserRegistration = () => {
                         value={user.lastName}
                         onChange={handleInputChange}
                         required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập tên của bạn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
                   </Row>
@@ -118,7 +122,7 @@ const UserRegistration = () => {
                 {/* Gender Selector */}
                 <Form.Group as={Row} controlId='gender' className='mb-3'>
                   <Col>
-                    <Form.Label>Gender</Form.Label>
+                    <Form.Label>Giới tính</Form.Label>
                     <Form.Control
                       as='select'
                       name='gender'
@@ -147,6 +151,8 @@ const UserRegistration = () => {
                         placeholder='...địa chỉ email...'
                         value={user.email}
                         onChange={handleInputChange}
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập địa chỉ email.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
                     <Col sm={6}>
@@ -157,6 +163,8 @@ const UserRegistration = () => {
                         placeholder='số điện thoại'
                         value={user.phoneNumber}
                         onChange={handleInputChange}
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập số điện thoại.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
                   </Row>

@@ -94,7 +94,6 @@ const ChangePasswordModal = ({ userId, show, handleClose }) => {
                 type={type}
                 name='currentPassword'
                 value={passwords.currentPassword}
-                value={passwords.currentPassword}
                 onChange={handleInputChange}
                 required
                 onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập mật khẩu hiện tại.")}
@@ -113,6 +112,9 @@ const ChangePasswordModal = ({ userId, show, handleClose }) => {
               name='newPassword'
               value={passwords.newPassword}
               onChange={handleInputChange}
+              required
+              onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập mật khẩu mới.")}
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </Form.Group>
 
@@ -123,6 +125,9 @@ const ChangePasswordModal = ({ userId, show, handleClose }) => {
               name='confirmNewPassword'
               value={passwords.confirmNewPassword}
               onChange={handleInputChange}
+              required
+              onInvalid={(e) => e.target.setCustomValidity("Vui lòng xác nhận mật khẩu mới.")}
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </Form.Group>
 
