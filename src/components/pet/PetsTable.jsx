@@ -80,18 +80,18 @@ const PetsTable = ({
     }
   };
 
-  const handleShowAddPetModal = () => {   
+  const handleShowAddPetModal = () => {
     setShowAddModal(true);
   };
 
   const handleAddPet = async (appointmentId, newPet) => {
-    try {         
+    try {
       const response = await addPet(appointmentId, newPet);
       onPetsUpdate(appointmentId);
       setSuccessMessage(response.message);
       setShowAddModal(false);
       setShowSuccessAlert(true);
-    } catch (error) {   
+    } catch (error) {
       setErrorMessage(error.message);
       setShowErrorAlert(true);
     }
@@ -127,15 +127,17 @@ const PetsTable = ({
             overlay={
               <Tooltip id={`tooltip-view-${appointmentId}`}>Thêm thú cưng</Tooltip>
             }>
-            <Link
-              to={"#"}
-              className='text-info'
-              onClick={() => handleShowAddPetModal(appointmentId)}>
+            <Button
+              variant='link'
+              className='text-info text-decoration-none p-0'
+              style={{ border: "none" }}
+              onClick={() => handleShowAddPetModal(appointmentId)}
+              disabled={!isEditable}>
               <h2>
                 {" "}
                 <BsPlus />
               </h2>
-            </Link>
+            </Button>
           </OverlayTrigger>
         </Col>
       </Row>
