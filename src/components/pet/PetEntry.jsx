@@ -29,6 +29,8 @@ const PetEntry = ({ pet, index, removePet, canRemove, handleInputChange }) => {
               placeholder='Nhập tên thú cưng'
               onChange={handleInputChange}
               required
+              onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập tên thú cưng.")}
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </Col>
           <Col md={6}>
@@ -41,6 +43,8 @@ const PetEntry = ({ pet, index, removePet, canRemove, handleInputChange }) => {
               onChange={handleInputChange}
               required
               min="0"
+              onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập tuổi thú cưng.")}
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </Col>
         </Form.Group>

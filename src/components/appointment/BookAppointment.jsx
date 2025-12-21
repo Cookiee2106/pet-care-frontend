@@ -101,12 +101,6 @@ const BookAppointment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    e.preventDefault();
-    if (!formData.appointmentDate || !formData.appointmentTime) {
-      setErrorMessage("Vui lòng chọn ngày và giờ hẹn.");
-      setShowErrorAlert(true);
-      return;
-    }
     // Extract appointmentDate and appointmentTime from formData
     const { appointmentDate, appointmentTime } = formData;
     // Use dateTimeFormatter to format the date and time
@@ -194,7 +188,9 @@ const BookAppointment = () => {
                         className='form-control'
                         minDate={new Date()}
                         placeholderText='Chọn ngày'
-                        placeholderText='Chọn ngày'
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn ngày hẹn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
 
@@ -210,7 +206,9 @@ const BookAppointment = () => {
                         dateFormat='HH:mm'
                         className='form-control'
                         placeholderText='Chọn giờ'
-                        placeholderText='Chọn giờ'
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giờ hẹn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                         minTime={
                           formData.appointmentDate &&
                             new Date(formData.appointmentDate).toDateString() === new Date().toDateString()
