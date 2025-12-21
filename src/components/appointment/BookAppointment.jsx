@@ -66,6 +66,9 @@ const BookAppointment = () => {
 
   const handlePetChange = (index, e) => {
     const { name, value } = e.target;
+    if (name === "age" && value < 0) {
+      return;
+    }
     setFormData((prevState) => ({
       ...prevState,
       pets: prevState.pets.map((pet, idx) =>

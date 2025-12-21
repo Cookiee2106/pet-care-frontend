@@ -7,6 +7,9 @@ const EditablePetRow = ({ pet, index, onSave, onCancel }) => {
 
   const handlePetChange = (e) => {
     const { name, value } = e.target;
+    if (name === "age" && value < 0) {
+      return;
+    }
     setEditPet((prevState) => ({
       ...prevState,
       [name]: value,
@@ -56,6 +59,7 @@ const EditablePetRow = ({ pet, index, onSave, onCancel }) => {
           name='age'
           value={editPet.age}
           onChange={handlePetChange}
+          min="0"
         />
       </td>
       <td>

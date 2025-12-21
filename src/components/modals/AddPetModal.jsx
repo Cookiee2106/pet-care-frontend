@@ -15,6 +15,9 @@ const AddPetModal = ({ show, onHide, onAddPet, appointmentId }) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    if (name === "age" && value < 0) {
+      return;
+    }
     setNewPet((prevPet) => ({
       ...prevPet,
       [name]: value,
@@ -62,7 +65,7 @@ const AddPetModal = ({ show, onHide, onAddPet, appointmentId }) => {
           <Form.Group controlId='petBreed'>
             <Form.Label>Giống</Form.Label>
             <PetBreedSelector
-              name='breed' 
+              name='breed'
               petType={newPet.type}
               value={newPet.petBreed}
               onChange={handleInputChange}
@@ -75,6 +78,7 @@ const AddPetModal = ({ show, onHide, onAddPet, appointmentId }) => {
               name='age'
               value={newPet.age}
               onChange={handleInputChange}
+              min="0"
             />
           </Form.Group>
         </Form>

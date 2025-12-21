@@ -40,6 +40,7 @@ const PetEntry = ({ pet, index, removePet, canRemove, handleInputChange }) => {
               placeholder='Nhập tuổi thú cưng'
               onChange={handleInputChange}
               required
+              min="0"
             />
           </Col>
         </Form.Group>
