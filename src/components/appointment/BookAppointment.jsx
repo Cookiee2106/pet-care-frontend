@@ -189,6 +189,8 @@ const BookAppointment = () => {
                         minDate={new Date()}
                         placeholderText='Chọn ngày'
                         required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn ngày hẹn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                       />
                     </Col>
 
@@ -205,6 +207,8 @@ const BookAppointment = () => {
                         className='form-control'
                         placeholderText='Chọn giờ'
                         required
+                        onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giờ hẹn.")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                         minTime={
                           formData.appointmentDate &&
                             new Date(formData.appointmentDate).toDateString() === new Date().toDateString()
@@ -239,6 +243,8 @@ const BookAppointment = () => {
                     onChange={handleInputChange}
                     value={formData.reason}
                     required
+                    onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập lý do khám.")}
+                    onInput={(e) => e.target.setCustomValidity("")}
                   />
                 </Form.Group>
                 <h5 className='text-center'>Thông tin thú cưng</h5>

@@ -60,7 +60,7 @@ const Login = () => {
       clearLoginForm();
       navigate(from, { replace: true });
       window.location.reload();
-    } catch (error) {    
+    } catch (error) {
       setErrorMessage(error.response.data.message);
       setShowErrorAlert(true);
     }
@@ -94,6 +94,9 @@ const Login = () => {
                       name='email'
                       value={credentials.email}
                       onChange={handleInputChange}
+                      required
+                      onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập tên đăng nhập.")}
+                      onInput={(e) => e.target.setCustomValidity("")}
                     />
                   </InputGroup>
                 </Form.Group>
@@ -109,6 +112,9 @@ const Login = () => {
                       name='password'
                       value={credentials.password}
                       onChange={handleInputChange}
+                      required
+                      onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập mật khẩu.")}
+                      onInput={(e) => e.target.setCustomValidity("")}
                     />
                   </InputGroup>
                 </Form.Group>
@@ -135,7 +141,7 @@ const Login = () => {
                 </div>
 
 
-                
+
               </div>
             </Card.Body>
           </Card>
