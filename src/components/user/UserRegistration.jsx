@@ -123,8 +123,11 @@ const UserRegistration = () => {
                       as='select'
                       name='gender'
                       required
+                      required
                       value={user.gender}
-                      onChange={handleInputChange}>
+                      onChange={handleInputChange}
+                      onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn giới tính.")}
+                      onInput={(e) => e.target.setCustomValidity("")}>
                       <option value=''>...chọn giới tính...</option>
                       <option value='Nam'>Nam</option>
                       <option value='Nữ'>Nữ</option>
@@ -170,6 +173,8 @@ const UserRegistration = () => {
                       placeholder='...đặt mật khẩu...'
                       value={user.password}
                       onChange={handleInputChange}
+                      onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập mật khẩu.")}
+                      onInput={(e) => e.target.setCustomValidity("")}
                     />
                   </Col>
                 </Form.Group>
@@ -183,7 +188,9 @@ const UserRegistration = () => {
                       name='userType'
                       required
                       value={user.userType}
-                      onChange={handleInputChange}>
+                      onChange={handleInputChange}
+                      onInvalid={(e) => e.target.setCustomValidity("Vui lòng chọn loại tài khoản.")}
+                      onInput={(e) => e.target.setCustomValidity("")}>
                       <option value=''>...chọn loại tài khoản...</option>
                       <option value='VET'>Tôi là bác sĩ thú y</option>
                       <option value='PATIENT'>Tôi là chủ thú cưng</option>

@@ -94,7 +94,11 @@ const ChangePasswordModal = ({ userId, show, handleClose }) => {
                 type={type}
                 name='currentPassword'
                 value={passwords.currentPassword}
+                value={passwords.currentPassword}
                 onChange={handleInputChange}
+                required
+                onInvalid={(e) => e.target.setCustomValidity("Vui lòng nhập mật khẩu hiện tại.")}
+                onInput={(e) => e.target.setCustomValidity("")}
               />
               <InputGroup.Text onClick={handleShowPassword}>
                 <Icon icon={icon} />

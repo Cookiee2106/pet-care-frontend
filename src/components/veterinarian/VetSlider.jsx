@@ -4,7 +4,7 @@ import RatingStars from '../rating/RatingStars';
 import { Link } from 'react-router-dom';
 import placeholderImage from "../../assets/images/placeholder.jpg";
 
-const VetSlider = ({vets}) => {
+const VetSlider = ({ vets }) => {
   return (
     <main>
       <Carousel interval={5000} indicators={true} controls={true}>
@@ -33,20 +33,20 @@ const VetSlider = ({vets}) => {
                   </div>
                   <div>
                     <p className='text-success'>
-                      Dr. {`${vet.firstName} ${vet.lastName}`}
+                      Bác sĩ {`${vet.firstName} ${vet.lastName}`}
                     </p>
                   </div>
                   <p>{vet.specialization}</p>
                   <p>
                     <span className='text-info'>
-                      Dr. {`${vet.firstName} ${vet.lastName}`} is a{" "}
+                      Bác sĩ {`${vet.firstName} ${vet.lastName}`} là chuyên gia{" "}
                       {vet.specialization}.
                     </span>
-                      Chúng tôi luôn cố gắng mang đến những thông tin chính xác và 
-                      hữu ích nhất về chăm sóc sức khỏe cho thú cưng của bạn. Đội 
-                      ngũ chuyên gia của chúng tôi cam kết cung cấp dịch vụ khám 
-                      chữa bệnh chất lượng cao, giúp thú cưng của bạn khỏe mạnh và 
-                      hạnh phúc.
+                    Chúng tôi luôn cố gắng mang đến những thông tin chính xác và
+                    hữu ích nhất về chăm sóc sức khỏe cho thú cưng của bạn. Đội
+                    ngũ chuyên gia của chúng tôi cam kết cung cấp dịch vụ khám
+                    chữa bệnh chất lượng cao, giúp thú cưng của bạn khỏe mạnh và
+                    hạnh phúc.
                   </p>
                   <p>
                     <Link
@@ -54,11 +54,11 @@ const VetSlider = ({vets}) => {
                       to={`/vet-reviews/${vet.id}/veterinarian`}>
                       Khách hàng nói gì về
                     </Link>
-                    Dr. {`${vet.firstName} ${vet.lastName}`} ?
+                    Bác sĩ {`${vet.firstName} ${vet.lastName}`} ?
                   </p>
                   <p>
                     <Link className='me-3' to={"/doctors"}>
-                     Gặp Gỡ Toàn Bộ Bác Sĩ Thú Y
+                      Gặp Gỡ Toàn Bộ Bác Sĩ Thú Y
                     </Link>
                   </p>
                 </Col>
