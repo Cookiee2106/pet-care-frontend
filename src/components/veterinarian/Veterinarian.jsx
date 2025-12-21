@@ -28,9 +28,9 @@ const Veterinarian = () => {
       const result = await getUserById(vetId);
       setVet(result.data);
       setTimeout(() => {
-         setIsLoading(false);
+        setIsLoading(false);
       }, 1000)
-     
+
     } catch (error) {
       setErrorMessage(error.response.data.message);
       setShowErrorAlert(true);
@@ -46,16 +46,16 @@ const Veterinarian = () => {
   const indexOfLastReview = currentPage * reviewPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewPerPage;
   const currentReviews =
-    vetReviews.slice(indexOfFirstReview, indexOfLastReview) || []; 
-  
-    if (isLoading) {
-      return (
-        <div>
-          <LoadSpinner />
-        </div>
-      );
-    }
-  
+    vetReviews.slice(indexOfFirstReview, indexOfLastReview) || [];
+
+  if (isLoading) {
+    return (
+      <div>
+        <LoadSpinner />
+      </div>
+    );
+  }
+
 
   return (
     <Container className='d-flex justify-content-center align-items-center mt-5'>
@@ -80,20 +80,20 @@ const Veterinarian = () => {
           </Row>
           <Card.Body>
             <Card.Title>
-              Dr. {vet.firstName} {vet.lastName}
+              Bác sĩ {vet.firstName} {vet.lastName}
             </Card.Title>
             <Card.Text>Chuyên khoa : {vet.specialization}</Card.Text>
 
             {vet.averageRating > 0 && (
               <Card.Text className='rating-stars'>
-                Ratings: (
+                Đánh giá: (
                 {vet.averageRating > 0
                   ? Number(vet.averageRating.toFixed(1))
                   : "0.0"}
-                ) stars
-                <RatingStars rating={vet.averageRating} /> rated by (
+                ) sao
+                <RatingStars rating={vet.averageRating} /> được đánh giá bởi (
                 {vet.totalReviewers || 0}{" "}
-                {vet.totalReviewers === 1 ? "person" : "people"}){" "}
+                {vet.totalReviewers === 1 ? "người" : "người"}){" "}
               </Card.Text>
             )}
             <Link
@@ -107,8 +107,8 @@ const Veterinarian = () => {
               Giới thiệu về bác sĩ {vet.firstName} {vet.lastName}{" "}
             </p>
             <p>
-              Bác sĩ luôn đặt sức khỏe và sự thoải mái của thú cưng lên hàng đầu, 
-              cam kết cung cấp các dịch vụ chẩn đoán và điều trị chính xác, dựa 
+              Bác sĩ luôn đặt sức khỏe và sự thoải mái của thú cưng lên hàng đầu,
+              cam kết cung cấp các dịch vụ chẩn đoán và điều trị chính xác, dựa
               trên các phương pháp y học tiên tiến.
             </p>
             <hr />
