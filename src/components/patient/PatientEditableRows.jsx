@@ -7,6 +7,10 @@ const PatientEditableRows = ({ patient, onSave, onCancel }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        if (name === "phoneNumber") {
+            if (!/^\d*$/.test(value)) return;
+            if (value.length > 10) return;
+        }
         setEditedPatient((prevState) => ({ ...prevState, [name]: value }));
     };
 

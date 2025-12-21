@@ -48,6 +48,10 @@ const UserUpdate = () => {
 
   const handleUserInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === "phoneNumber") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
     setUserData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -56,6 +60,11 @@ const UserUpdate = () => {
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();
+    if (userData.phoneNumber && userData.phoneNumber.length !== 10) {
+      setErrorMessage("Số điện thoại phải đủ 10 chữ số.");
+      setShowErrorAlert(true);
+      return;
+    }
     const updatedUserData = {
       firstName: userData.firstName,
       lastName: userData.lastName,
@@ -67,8 +76,8 @@ const UserUpdate = () => {
     };
     try {
       setIsProcessing(true);
-        const response = await updateUser(updatedUserData, userId);
-        console.log("The response from the update: ",response);
+      const response = await updateUser(updatedUserData, userId);
+      console.log("The response from the update: ", response);
       setSuccessMessage(response.message);
       setShowSuccessAlert(true);
     } catch (error) {

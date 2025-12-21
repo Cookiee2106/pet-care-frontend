@@ -34,6 +34,10 @@ const UserRegistration = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === "phoneNumber") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
     setUser((prevState) => ({
       ...prevState,
       [name]: value,
@@ -42,6 +46,11 @@ const UserRegistration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (user.phoneNumber.length !== 10) {
+      setErrorMessage("Số điện thoại phải đủ 10 chữ số.");
+      setShowErrorAlert(true);
+      return;
+    }
     setIsProcessing(true);
     try {
       const response = await registerUser(user);

@@ -8,6 +8,10 @@ const VetEditableRows = ({ vet, onSave, onCancel }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === "phoneNumber") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
     setEditedVet((prevState) => ({ ...prevState, [name]: value }));
   };
 
