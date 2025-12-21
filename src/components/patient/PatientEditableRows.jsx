@@ -15,6 +15,10 @@ const PatientEditableRows = ({ patient, onSave, onCancel }) => {
     };
 
     const handleSave = () => {
+        if (editedPatient.phoneNumber.length !== 10) {
+            alert("Số điện thoại phải đủ 10 chữ số.");
+            return;
+        }
         onSave(patient.id, editedPatient);
     };
 

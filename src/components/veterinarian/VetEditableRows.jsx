@@ -16,6 +16,10 @@ const VetEditableRows = ({ vet, onSave, onCancel }) => {
   };
 
   const handleSave = () => {
+    if (editedVet.phoneNumber.length !== 10) {
+      alert("Số điện thoại phải đủ 10 chữ số.");
+      return;
+    }
     onSave(vet.id, editedVet, onCancel);
   };
 
