@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import placeholderImage from "../../assets/images/placeholder.jpg";
 
 const VetSlider = ({ vets }) => {
+  const baseURL = import.meta.env.VITE_API_URL || "http://localhost:9193/api/v1";
+
   return (
     <main>
       <Carousel interval={5000} indicators={true} controls={true}>
@@ -15,10 +17,13 @@ const VetSlider = ({ vets }) => {
                 <Col xs={12} md={4} className='text-center'>
                   <Card.Img
                     src={
-                      vet.photo
-                        ? `data:image/png;base64,${vet.photo}`
-                        : placeholderImage
+                      vet.photoId
+                        ? `${baseURL}/photos/photo/${vet.photoId}/photo`
+                        : vet.photo
+                          ? `data:image/png;base64,${vet.photo}`
+                          : placeholderImage
                     }
+                    onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
                     alt={"photo"}
                     style={{
                       maxWidth: "400px",
