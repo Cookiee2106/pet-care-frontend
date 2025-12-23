@@ -15,7 +15,8 @@ const VeterinarianCard = ({ vet }) => {
               <Link to={""}>
                 <UserImage
                   userId={vet.id}
-                  userPhoto={vet.photo}                 
+                  userPhoto={vet.photo}
+                  photoId={vet.photoId}
                 />
               </Link>
             </div>
@@ -27,7 +28,7 @@ const VeterinarianCard = ({ vet }) => {
                 <h6>{vet.specialization}</h6>
               </Card.Title>
               <Card.Text className='review rating-stars'>
-                Đánh giá: <RatingStars rating={vet.averageRating}/> ({vet.totalReviewers})
+                Đánh giá: <RatingStars rating={vet.averageRating} /> ({vet.totalReviewers})
               </Card.Text>
               <Link to={`/book-appointment/${vet.id}/new-appointment`} className="link">
                 Đặt lịch hẹn
