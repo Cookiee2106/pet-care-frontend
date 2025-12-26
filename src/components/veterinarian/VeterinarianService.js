@@ -1,10 +1,8 @@
 import { api } from "../utils/api";
 
-export async function getVeterinarians() {
+export async function getVeterinarians(page = 0, size = 10) {
   try {
-    const result = await api.get("/veterinarians/get-all-veterinarians");
-    console.log("The result ", result);
-    console.log("The result ", result.data);
+    const result = await api.get(`/veterinarians/get-all-veterinarians?page=${page}&size=${size}`);
     return result.data;
   } catch (error) {
     throw error;
