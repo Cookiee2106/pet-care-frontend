@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     getVeterinarians()
       .then((vets) => {
-        setVets(vets.data);
+        setVets(vets.data.content);
       })
       .catch((error) => {
         setErrorMessage(error.message || "Something went wrong!");
@@ -35,20 +35,20 @@ const Home = () => {
               <h2 className='text-info'>Chúng Tôi Là Ai</h2>
               <Card.Title>Chăm Sóc Toàn Diện Cho Những Người Bạn Lông Xù Của Bạn</Card.Title>
               <Card.Text>
-                
-              Tại Universal Pet Care, chúng tôi tin rằng mọi thú cưng đều xứng đáng được hưởng 
-              sự chăm sóc tốt nhất. Đội ngũ chuyên gia tận tâm của chúng tôi luôn sẵn sàng đảm 
-              bảo sức khỏe và hạnh phúc cho thú cưng của bạn thông qua các dịch vụ thú y toàn diện.
 
-              Với hàng chục năm kinh nghiệm tích lũy, các Bác sĩ Thú y và nhân viên hỗ trợ của chúng 
-              tôi cam kết cung cấp dịch vụ chăm sóc cá nhân hóa, phù hợp với nhu cầu riêng biệt của 
-              từng thú cưng.
+                Tại Universal Pet Care, chúng tôi tin rằng mọi thú cưng đều xứng đáng được hưởng
+                sự chăm sóc tốt nhất. Đội ngũ chuyên gia tận tâm của chúng tôi luôn sẵn sàng đảm
+                bảo sức khỏe và hạnh phúc cho thú cưng của bạn thông qua các dịch vụ thú y toàn diện.
+
+                Với hàng chục năm kinh nghiệm tích lũy, các Bác sĩ Thú y và nhân viên hỗ trợ của chúng
+                tôi cam kết cung cấp dịch vụ chăm sóc cá nhân hóa, phù hợp với nhu cầu riêng biệt của
+                từng thú cưng.
               </Card.Text>
               <Card.Text>
-              Chúng tôi cung cấp đa dạng các loại hình dịch vụ, từ chăm sóc phòng ngừa, kiểm tra sức 
-              khỏe định kỳ cho đến các quy trình phẫu thuật nâng cao và chăm sóc khẩn cấp. Cơ sở vật 
-              chất hiện đại của chúng tôi được trang bị công nghệ thú y tiên tiến nhất, cho phép chúng 
-              tôi cung cấp dịch vụ chất lượng cao với sự chính xác và lòng tận tâm.
+                Chúng tôi cung cấp đa dạng các loại hình dịch vụ, từ chăm sóc phòng ngừa, kiểm tra sức
+                khỏe định kỳ cho đến các quy trình phẫu thuật nâng cao và chăm sóc khẩn cấp. Cơ sở vật
+                chất hiện đại của chúng tôi được trang bị công nghệ thú y tiên tiến nhất, cho phép chúng
+                tôi cung cấp dịch vụ chất lượng cao với sự chính xác và lòng tận tâm.
               </Card.Text>
               <Button variant='outline-info'> Đội Ngũ Bác Sĩ Của Chúng Tôi</Button>
             </Card.Body>
@@ -76,7 +76,7 @@ const Home = () => {
               </ListGroup>
               <Card.Text className='mt-3'>
                 Từ kiểm tra sức khỏe định kỳ cho đến phẫu thuật khẩn cấp, toàn
-                bộ dịch vụ thú y của chúng tôi đảm bảo sức khỏe thú cưng của bạn 
+                bộ dịch vụ thú y của chúng tôi đảm bảo sức khỏe thú cưng của bạn
                 luôn được chăm sóc tốt nhất.
               </Card.Text>
               <Button variant='outline-info'> Đội Ngũ Bác Sĩ Của Chúng Tôi</Button>
@@ -86,7 +86,7 @@ const Home = () => {
       </Row>
       <div className='card mb-5'>
         <h5>
-         Khách hàng nói gì về bác sĩ thú y{" "}
+          Khách hàng nói gì về bác sĩ thú y{" "}
           <span className='text-info'>Pet Care</span>
         </h5>
         <hr />
