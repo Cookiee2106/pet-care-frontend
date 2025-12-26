@@ -9,6 +9,15 @@ export async function getVeterinarians(page = 0, size = 10) {
   }
 }
 
+export async function getVeterinariansInternal() {
+  try {
+    const result = await api.get("/veterinarians/get-all-veterinarians-internal");
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function findAvailableVeterinarians(searchParams) {
   try {
     const queryParams = new URLSearchParams(searchParams);

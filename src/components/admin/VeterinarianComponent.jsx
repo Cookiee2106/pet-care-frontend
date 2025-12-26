@@ -14,7 +14,7 @@ import { Table, OverlayTrigger, Tooltip, Row, Col, Form, Button, InputGroup } fr
 import UseMessageAlerts from "../hooks/UseMessageAlerts";
 import AlertMessage from "../common/AlertMessage";
 import DeleteConfirmationModal from "../modals/DeleteConfirmationModal";
-import { getVeterinarians } from "../veterinarian/VeterinarianService";
+import { getVeterinarians, getVeterinariansInternal } from "../veterinarian/VeterinarianService";
 import { deleteUser, updateUser, searchUsers } from "../user/UserService";
 import { lockUserAccount, unLockUserAccount } from "../user/UserService";
 import VetEditableRows from "../veterinarian/VetEditableRows";
@@ -51,16 +51,10 @@ const VeterinarianComponent = () => {
   } = UseMessageAlerts();
 
   const fetchVeterinarians = () => {
-    getVeterinarians(0, 1000)
+    getVeterinariansInternal()
       .then((data) => {
-        let list = [];
-        if (data.data && Array.isArray(data.data.content)) {
-          list = data.data.content;
-        } else if (Array.isArray(data.data)) {
-          list = data.data;
-        }
-        setVeterinarians(list);
-        setFilteredVets(list);
+        setVeterinarians(data.data);
+        setFilteredVets(data.data);
       })
       .catch((error) => {
         setErrorMessage(error.message);
