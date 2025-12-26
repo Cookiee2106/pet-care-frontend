@@ -51,10 +51,10 @@ const VeterinarianComponent = () => {
   } = UseMessageAlerts();
 
   const fetchVeterinarians = () => {
-    getVeterinarians()
+    getVeterinarians(0, 1000)
       .then((data) => {
-        setVeterinarians(data.data);
-        setFilteredVets(data.data);
+        setVeterinarians(data.data.content);
+        setFilteredVets(data.data.content);
       })
       .catch((error) => {
         setErrorMessage(error.message);
