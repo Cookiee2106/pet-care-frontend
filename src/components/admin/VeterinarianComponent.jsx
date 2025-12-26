@@ -53,8 +53,14 @@ const VeterinarianComponent = () => {
   const fetchVeterinarians = () => {
     getVeterinarians(0, 1000)
       .then((data) => {
-        setVeterinarians(data.data.content);
-        setFilteredVets(data.data.content);
+        let list = [];
+        if (data.data && Array.isArray(data.data.content)) {
+          list = data.data.content;
+        } else if (Array.isArray(data.data)) {
+          list = data.data;
+        }
+        setVeterinarians(list);
+        setFilteredVets(list);
       })
       .catch((error) => {
         setErrorMessage(error.message);
