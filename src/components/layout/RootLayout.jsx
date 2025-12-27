@@ -12,38 +12,58 @@ const RootLayout = () => {
   const [wakeUpStatus, setWakeUpStatus] = useState("awakening"); // awakening | connected
 
   useEffect(() => {
-    // Wake Up Service: Ping backend immediately
-    let isTimeoutTriggered = false;
-    const timeoutId = setTimeout(() => {
-      isTimeoutTriggered = true;
-      setShowWakeUpToast(true);
-      setWakeUpStatus("awakening");
-    }, 3000);
+    let timeoutId;
+    let isMounted = true;
 
     const pingBackend = async () => {
+      let isTimeoutTriggered = false;
+
+      // Clear any existing timeout from previous runs (debouncing essentially)
+      if (timeoutId) clearTimeout(timeoutId);
+
+      // Set a timer: if request takes > 2s, show toast
+      timeoutId = setTimeout(() => {
+        if (isMounted) {
+          isTimeoutTriggered = true;
+          setShowWakeUpToast(true);
+          setWakeUpStatus("awakening");
+        }
+      }, 2000);
+
       try {
         await api.get("/veterinarians/vet/get-all-specialization");
-        clearTimeout(timeoutId);
 
-        if (isTimeoutTriggered) {
-          setWakeUpStatus("connected");
-          setTimeout(() => setShowWakeUpToast(false), 3000); // Auto hide success msg
+        if (isMounted) {
+          clearTimeout(timeoutId);
+          if (isTimeoutTriggered) {
+            // If we showed the 'awakening' toast, update it to 'connected'
+            setWakeUpStatus("connected");
+            setTimeout(() => {
+              if (isMounted) setShowWakeUpToast(false);
+            }, 3000);
+          }
+          // If we didn't show toast (fast response), do nothing
         }
       } catch (error) {
-        clearTimeout(timeoutId);
-        if (isTimeoutTriggered) setShowWakeUpToast(false);
+        if (isMounted) {
+          clearTimeout(timeoutId);
+          // If error, better hide the "awakening" toast to avoid Stuck UI
+          // Or we could show "Error connecting" but that might be annoying.
+          if (isTimeoutTriggered) setShowWakeUpToast(false);
+        }
       }
     };
 
+    // 1. Initial Ping
     pingBackend();
 
+    // 2. Token Check
     const token = localStorage.getItem("authToken");
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
         if (decodedToken.exp < currentTime) {
-          // Token expired
           localStorage.removeItem("authToken");
           localStorage.removeItem("userId");
           localStorage.removeItem("userRoles");
@@ -55,6 +75,22 @@ const RootLayout = () => {
         localStorage.removeItem("userRoles");
       }
     }
+
+    // 3. Visibility Change Listener (Wake up when user returns)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        // Trigger ping again when tab becomes visible
+        pingBackend();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      isMounted = false;
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
