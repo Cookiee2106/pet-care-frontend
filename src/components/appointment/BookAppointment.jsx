@@ -198,7 +198,13 @@ const BookAppointment = () => {
                         onChange={handleDateChange}
                         dateFormat='yyyy-MM-dd'
                         className='form-control'
-                        minDate={new Date()}
+                        minDate={(() => {
+                          const now = new Date();
+                          if (now.getHours() >= 18) {
+                            now.setDate(now.getDate() + 1);
+                          }
+                          return now;
+                        })()}
                         placeholderText='Chọn ngày'
                         customInput={
                           <CustomDateInput

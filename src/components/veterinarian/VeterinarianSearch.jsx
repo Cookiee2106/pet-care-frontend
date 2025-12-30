@@ -130,7 +130,13 @@ const VeterinarianSearch = ({ onSearchResult }) => {
                       selected={searchQuery.date}
                       onChange={handleDateChange}
                       dateFormat='yyyy-MM-dd'
-                      minDate={new Date()}
+                      minDate={(() => {
+                        const now = new Date();
+                        if (now.getHours() >= 18) {
+                          now.setDate(now.getDate() + 1);
+                        }
+                        return now;
+                      })()}
                       className='form-control w-100'
                       placeholderText='Chọn ngày'
                     />
