@@ -98,7 +98,7 @@ const UserDashboard = () => {
         logout();
       }, 10000);
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.response?.data?.message || error.message);
       setShowErrorAlert(true);
     }
   };
