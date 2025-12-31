@@ -111,7 +111,7 @@ const RootLayout = () => {
           </Toast.Header>
           <Toast.Body className={wakeUpStatus === 'connected' ? "bg-success text-white" : "bg-light"}>
             {wakeUpStatus === 'awakening'
-              ? "Server miễn phí đang ngủ đông. Vui lòng đợi 30-50 giây..."
+              ? "Server miễn phí đang ngủ đông. Vui lòng đợi 3-4 phút..."
               : "Hệ thống đã sẵn sàng phục vụ!"}
           </Toast.Body>
         </Toast>
